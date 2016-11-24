@@ -1,0 +1,51 @@
+#: import ListAdapter kivy.adapters.listadapter.ListAdapter
+#: import main main
+
+<RootLayout>:
+    orientation: 'vertical'
+
+    list_view: list_view
+    list_view_container: list_view_container
+
+    Label:
+        canvas.before:
+            Color:
+                rgba: 0.098, 0.098, 0.439, 1
+            Rectangle:
+                pos: self.pos
+                size: self.size
+        size_hint_y: None
+        size_hint_y: 0.15
+        font_size: '20sp'
+        halign: 'center'
+        markup: True
+        text: '[color=#FC6][b]PLDT ROUTER TOOL[/b][/color]\n[color=#AFF]https://github.com/hush2[/color]'
+
+    BoxLayout:
+        id: list_view_container
+        size_hint_y: None
+        size_hint_y: 0.65        
+        ListView:
+            id: list_view            		
+            adapter:
+                ListAdapter(data=[], cls=main.MyListItemLabel)
+
+    BoxLayout:
+        size_hint_y: None
+        size_hint_y: 0.20
+        padding: 4            
+        GridLayout:			
+            cols: 2
+            spacing: 4
+            Button:
+                text: 'Refresh'
+                on_press: app.refresh(root)
+            Button:
+                text: 'Settings...'
+                on_press: app.open_settings()
+            Button:
+                text: 'Reset ADSL'
+                on_press: root.reset_adsl()
+            Button:
+                text: 'Reboot Router'
+                on_press: root.reboot_router()
