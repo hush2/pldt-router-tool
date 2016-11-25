@@ -76,7 +76,8 @@ def parse_table(html):
         th = tr.find('th')
         td = tr.find('td')
         if th and td:
-            data[th.text.strip()] = td.text.strip()
+            td = td.text.strip()
+            data[th.text.strip()] = td if td else '-'
 
 
 if __name__ == '__main__':
