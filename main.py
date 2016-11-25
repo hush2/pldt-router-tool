@@ -22,7 +22,7 @@ import router
 
 class MyListItemLabel(ListItemLabel):
     def __init__(self, **kwargs):
-        super().__init__(markup=True, **kwargs)
+        super(MyListItemLabel, self).__init__(markup=True, **kwargs)
 
 
 class RootLayout(BoxLayout):
