@@ -1,8 +1,14 @@
+#
+# PLDT Router Tool
+# https://github.com/hush2
+#
+# Tested on PLDT Baudtec RNR4_A72T_PLD_0.19
+#
+
 import requests
 from requests.exceptions import ConnectionError, Timeout
 from collections import OrderedDict
 from bs4 import BeautifulSoup
-import sys
 
 # Router defaults, set real value in gui.
 ip = '192.168.1.1'
