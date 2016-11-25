@@ -95,7 +95,7 @@ class MainApp(App):
 
        {"type": "string",
         "title": "Username",
-        "desc": "If you did not change username, default is usually [b]admin[/b].",
+        "desc": "If you did not change username, default is usually [b]admin[/b] or [b]adminpldt[/b].",
         "section": "settings",
         "key": "username"},
 

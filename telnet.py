@@ -40,9 +40,9 @@ class TelnetClient:
         if not self.telnet:
             raise TelnetClientException('Telnet not connected.')
 
-        result = self.telnet.expect([b'\\r\\nPassword:\s'], 2)
+        result = self.telnet.expect([b'\\r\\nUsername:\s'], 2)
         if result[0] < 0:
-            raise TelnetClientException('Password prompt not found.')
+            raise TelnetClientException('Username prompt not found.')
 
         self.telnet.write(str.encode(username) + self.CR)
         self.telnet.read_until(b'Password: ')
@@ -67,3 +67,10 @@ class TelnetClient:
 
     def close(self):
         self.telnet.close()
+
+
+if __name__ == '__main__':
+    tc = TelnetClient('192.168.1.1')
+    tc.login('admin', '1234')
+    status = tc.send_command(TelnetClient.SHOW_STATUS)
+    print(status)
