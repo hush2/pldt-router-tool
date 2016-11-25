@@ -1,6 +1,9 @@
 #: import ListAdapter kivy.adapters.listadapter.ListAdapter
 #: import main main
 
+<Label>:
+    font_size: '18sp'
+
 <RootLayout>:
     orientation: 'vertical'
 
@@ -16,25 +19,24 @@
                 size: self.size
         size_hint_y: None
         size_hint_y: 0.15
-        font_size: '20sp'
         halign: 'center'
         markup: True
-        text: '[color=#FC6][b]PLDT ROUTER TOOL[/b][/color]\n[color=#AFF]https://github.com/hush2[/color]'
+        text: '[color=#FC6][size=30sp]PLDT ROUTER TOOL[/size][/color]\n[color=#AFF]https://github.com/hush2[/color]'
 
     BoxLayout:
         id: list_view_container
         size_hint_y: None
-        size_hint_y: 0.65        
+        size_hint_y: 0.65
         ListView:
-            id: list_view            		
+            id: list_view
             adapter:
                 ListAdapter(data=[], cls=main.MyListItemLabel)
 
     BoxLayout:
         size_hint_y: None
         size_hint_y: 0.20
-        padding: 4            
-        GridLayout:			
+        padding: 4
+        GridLayout:
             cols: 2
             spacing: 4
             Button:

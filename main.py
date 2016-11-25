@@ -1,4 +1,10 @@
+#
+# PLDT Router Tool
+# https://github.com/hush2
+#
+
 import os
+from kivy.properties import ObjectProperty
 
 from kivy.uix.label import Label
 
@@ -8,10 +14,9 @@ import kivy
 
 kivy.require('1.9.1')
 
-from kivy.properties import ObjectProperty
 from kivy.uix.boxlayout import BoxLayout
 from kivy.uix.listview import ListItemLabel
-from kivy.app import App
+from kivy.app import App, platform
 import router
 
 
@@ -76,30 +81,34 @@ class MainApp(App):
 
     def build_settings(self, settings):
         jsondata = '''[
-       { "type": "title",
-         "title": "Router Settings" },
+       {"type": "title",
+        "title": "Router Settings" },
 
-       { "type": "string",
-         "title": "IP Address",
-         "desc": "Router IP, if you don't know use default of [b]192.168.1.1[/b].",
-         "section": "settings",
-         "key": "ip"}      ,
+       {"type": "string",
+        "title": "IP Address",
+        "desc": "Router IP, if you don't know use default of [b]192.168.1.1[/b].",
+        "section": "settings",
+        "key": "ip"}      ,
 
-       { "type": "string",
-         "title": "Username",
-         "desc": "If you did not change username, default is usually [b]admin[/b].",
-         "section": "settings",
-         "key": "username"},
+       {"type": "string",
+        "title": "Username",
+        "desc": "If you did not change username, default is usually [b]admin[/b].",
+        "section": "settings",
+        "key": "username"},
 
-       { "type": "string",
-         "title": "Password",
-         "desc": "If you did not change the password, default is usually [b]1234[/b] or [b]1234567890[/b].",
-         "section": "settings",
-         "key": "password" }]'''
+       {"type": "string",
+        "title": "Password",
+        "desc": "If you did not change the password, default is usually [b]1234[/b] or [b]1234567890[/b].",
+        "section": "settings",
+        "key": "password" }]'''
 
         settings.add_json_panel(self.title, self.config, data=jsondata)
 
 
 if __name__ == '__main__':
+    if platform in ('linux', 'windows', 'macosx'):
+        kivy.Config.set('graphics', 'width', '480')
+        kivy.Config.set('graphics', 'height', '854')
+
     app = MainApp()
     app.run()
