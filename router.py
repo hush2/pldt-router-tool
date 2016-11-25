@@ -8,6 +8,7 @@ import sys
 ip = '192.168.1.1'
 username = 'admin'
 password = '1234'
+show_all = 0
 
 data = {}
 
@@ -52,6 +53,9 @@ def fetch_data():
         fetch_info('/adslconfig.htm')
     except (ConnectionError, Timeout):
         raise RouterException('Connection error.')
+
+    if show_all:
+        return data
 
     # Return only relevant items
     od = OrderedDict()

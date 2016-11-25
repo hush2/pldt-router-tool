@@ -45,12 +45,15 @@ class MainApp(App):
         config.setdefaults('settings', {
             'ip': '192.168.1.1',
             'username': 'admin',
-            'password': '1234'})
+            'password': '1234',
+            'showall': False})
 
     def refresh(self, root):
         lvc = root.list_view_container
         lvc.clear_widgets()
         lvc.add_widget(root.list_view)
+
+        router.show_all = app.config.getint('settings', 'showall')
 
         try:
             data = router.fetch_data()
@@ -100,7 +103,13 @@ class MainApp(App):
         "title": "Password",
         "desc": "If you did not change the password, default is usually [b]1234[/b] or [b]1234567890[/b].",
         "section": "settings",
-        "key": "password" }]'''
+        "key": "password" },
+
+       {"type": "bool",
+        "title": "Show All Info",
+        "desc": "Shows all information returned by router.",
+        "section": "settings",
+        "key": "showall" }]'''
 
         settings.add_json_panel(self.title, self.config, data=jsondata)
 
