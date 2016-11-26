@@ -4,8 +4,9 @@
 #
 
 import os
-from kivy.properties import ObjectProperty
+import thread
 
+from kivy.properties import ObjectProperty
 from kivy.uix.label import Label
 
 os.environ['KIVY_NO_FILELOG'] = '1'
@@ -49,10 +50,17 @@ class MainApp(App):
             'showall': False})
 
     def refresh(self, root):
+        thread.start_new_thread(self._refresh, (root,))
+
+    def _refresh(self, root):
+
         lvc = root.list_view_container
         lvc.clear_widgets()
         lvc.add_widget(root.list_view)
 
+        router.ip = app.config.get('settings', 'ip')
+        router.username = app.config.get('settings', 'username')
+        router.password = app.config.get('settings', 'password')
         router.show_all = app.config.getint('settings', 'showall')
 
         try:
@@ -60,6 +68,7 @@ class MainApp(App):
             fdata = []
             for (k, v) in data.items():
                 fdata.append("{}: [color=#FF0]{}[/color]".format(k, v))
+
             lv = root.list_view
             lv.adapter.data = fdata
             lv.populate()
@@ -73,10 +82,6 @@ class MainApp(App):
         self.title = 'PLDT Router Tool'
 
         root = RootLayout()
-
-        router.ip = app.config.get('settings', 'ip')
-        router.username = app.config.get('settings', 'username')
-        router.password = app.config.get('settings', 'password')
 
         self.refresh(root)
 
