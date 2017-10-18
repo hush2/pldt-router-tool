@@ -1,6 +1,6 @@
 # PLDT Router Tool
 
-![Screenshot 1](http://hush2.bitbucket.org/images/screenshots/pldtroutertool_ss1.png)
+![Screenshot 1](https://hush2.bitbucket.io/images/screenshots/pldtroutertool_ss1.png)
 
 - Python 2.7/3.5
 - Kivy 1.9.2-dev0
